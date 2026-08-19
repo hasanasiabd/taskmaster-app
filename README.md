@@ -39,5 +39,5 @@ To run this project locally on your machine, follow these steps:
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/taskmaster-app.git](https://github.com/your-username/taskmaster-app.git)
+git clone https://github.com/hasanasiabd/taskmaster-app.git
 cd taskmaster-app

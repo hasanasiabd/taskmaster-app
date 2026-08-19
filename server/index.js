@@ -26,6 +26,15 @@ app.get('/', (req, res) => {
   res.send('Task Management API is running...');
 });
 
+
+
+// Vercel serverless-এর জন্য app এক্সপোর্ট করা জরুরি
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
+
 // Server Listen
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -1,0 +1,90 @@
+/* Custom CSS for Modern UI - index.css */
+
+:root {
+  /* Common border radii */
+  --tm-card-radius: 1rem; /* rounded-4 equivalent */
+  --tm-badge-radius: 50px;
+}
+
+/* Base Body Styles */
+body {
+  transition: background-color 0.3s ease;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Modern Card Styling for Task Columns */
+.column-card {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: var(--tm-card-radius) !important;
+  background-color: var(--bs-light) !important;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Specific styling for column header areas */
+.card-header-modern {
+  border-bottom: none !important;
+  background-color: transparent !important;
+}
+
+/* Modern Task Card Styling */
+.task-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* rounded-3 equivalent */
+  background-color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge styling */
+.badge-modern {
+  border-radius: var(--tm-badge-radius) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 0.3em 0.8em;
+}
+
+/* Specific Badge Colors */
+.badge-priority-high { background-color: #dc3545; color: white; }
+.badge-priority-medium { background-color: #ffc107; color: #212529; }
+.badge-priority-low { background-color: #0dcaf0; color: #212529; }
+
+/* Icon button styling */
+.icon-btn-modern {
+  padding: 0.375rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+/* --- Dark Mode Specifics using data-bs-theme --- */
+[data-bs-theme="dark"] body {
+  background-color: #121212 !important; /* Proper Dark Background */
+}
+
+/* Target Column Cards in Dark Mode */
+[data-bs-theme="dark"] .column-card {
+  background-color: rgba(30, 30, 30, 0.7) !important; /* Dark Glassmorphism */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Target Task Cards in Dark Mode */
+[data-bs-theme="dark"] .task-card {
+  background-color: rgba(20, 20, 20, 0.8) !important; /* Very Dark, Slightly Translucent */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Text colors in Dark Mode */
+[data-bs-theme="dark"] .text-muted {
+  color: #a0a0a0 !important;
+}
+
+/* Target Badge in Dark Mode to ensure text is correct color */
+[data-bs-theme="dark"] .badge-modern.text-muted {
+  color: #212529 !important; /* For text-muted on dark background */
+}

@@ -1,0 +1,425 @@
+/* client/src/App.css */
+
+/* ==========================================================================
+   1. Global Theme Variables & Reset
+   ========================================================================== */
+:root {
+  --bg-main: #f8f9fa;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+  --accent: #0d6efd;
+  --accent-bg: rgba(13, 110, 253, 0.1);
+  --accent-border: rgba(13, 110, 253, 0.3);
+  --social-bg: #e9ecef;
+  --border: #dee2e6;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Bootstrap Dark Mode Overrides */
+[data-bs-theme="dark"] {
+  --bg-main: #0f172a !important;
+  --card-bg: #1e293b !important;
+  --card-border: #334155 !important;
+  --text-primary: #f8fafc !important;
+  --text-muted: #94a3b8 !important;
+  --accent: #38bdf8;
+  --accent-bg: rgba(56, 189, 248, 0.1);
+  --accent-border: rgba(56, 189, 248, 0.3);
+  --social-bg: #334155;
+  --border: #334155;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==========================================================================
+   2. Board & Bootstrap Component Fixes
+   ========================================================================== */
+
+/* Task Columns */
+.bg-light {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Task Cards */
+.card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  color: var(--text-primary) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow) !important;
+}
+
+/* Text Colors */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Navbar Custom Styling */
+.navbar {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================================================
+   3. Existing Starter / Hero Layout Styles
+   ========================================================================== */
+
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-primary);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}
+
+/* ==========================================================================
+   Modern Board Layout & Priority Colors Fix
+   ========================================================================== */
+
+/* Light Mode Styling */
+.task-column {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.task-card {
+  background-color: #ffffff !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Dark Mode Overrides */
+[data-bs-theme="dark"] body {
+  background-color: #0b0f17 !important; /* ডিপ ডার্ক ব্যাকগ্রাউন্ড */
+}
+
+/* কলামের ব্যাকগ্রাউন্ড (বডির চেয়ে একটু লাইট) */
+[data-bs-theme="dark"] .task-column {
+  background-color: #161e2e !important;
+  border: 1px solid #243146 !important;
+}
+
+/* কার্ডের ব্যাকগ্রাউন্ড (কলামের চেয়ে আরও স্পষ্ট) */
+[data-bs-theme="dark"] .task-card {
+  background-color: #1f293d !important;
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-bs-theme="dark"] .task-card:hover {
+  border-color: #475569 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* প্রাইওরিটি ব্যাজ রিফাইনমেন্ট */
+.badge.bg-warning {
+  background-color: #f59e0b !important; /* প্রপার অরেঞ্জ/ইয়েলো */
+  color: #000 !important;
+}
+
+.badge.bg-danger {
+  background-color: #ef4444 !important; /* মডার্ন রেড */
+  color: #fff !important;
+}
+
+.badge.bg-info {
+  background-color: #06b6d4 !important; /* মডার্ন সায়ান/ব্লু */
+  color: #fff !important;
+}
+
+/* ==========================================================================
+   Typography & Modern Layout Enhancements
+   ========================================================================== */
+
+/* টাইটেল গ্রেডিয়েন্ট টেক্সট এফেক্ট */
+.board-title {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-bs-theme="light"] .board-title {
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* কলাম সাইজ ও কার্ড সংকুচিত করা */
+.task-column {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* অ্যাকশন বাটন ফিক্স */
+.action-btn {
+  padding: 2px 6px !important;
+  font-size: 0.75rem !important;
+  line-height: 1 !important;
+}
+
+.priority-badge {
+  font-size: 0.65rem !important;
+  padding: 4px 8px !important;
+  letter-spacing: 0.5px;
+}
+
+/* ছোট ফন্ট ও ট্রাঙ্কেট ফিক্স */
+.fs-7 {
+  font-size: 0.75rem !important;
+}
+
+.tracking-wide {
+  letter-spacing: 0.5px;
+}
+
+.btn-add-task {
+  font-size: 0.875rem !important;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: none !important;
+}
+
+.btn-add-task:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* ইনপুট ফিল্ডের প্লেসহোল্ডার সব থিমে স্পষ্ট দেখানোর জন্য */
+.form-control::placeholder {
+  color: #94a3b8 !important; /* Slate-400 হালকা ধূসর কালার */
+  opacity: 1 !important;
+}
+
+/* ফোকাস অবস্থায় ইনপুট টেক্সট ও ব্যাকগ্রাউন্ড ফিক্স */
+.form-control:focus {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+}
+
+/* লাইট ও ডার্ক—যেকোনো মোডেই ইনপুটের প্লেসহোল্ডার স্পষ্ট দেখানোর জন্য */
+.form-control::placeholder {
+  color: #94a3b8 !important; /* Light Slate Gray */
+  opacity: 1 !important;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}

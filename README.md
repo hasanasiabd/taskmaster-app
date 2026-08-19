@@ -2,7 +2,7 @@
 
 **TaskMaster** is a full-stack, modern task management application built to help users seamlessly track and organize their daily task workflows. It features multi-provider social authentication, interactive dark/light mode toggling, and clean responsive UI design.
 
-🔗 **Live Demo:** [https://your-app-name.vercel.app](https://your-app-name.vercel.app) *(Replace with your Vercel link after deployment)*
+🔗 **Live Demo:** [https://taskmaster-app-pink.vercel.app/](https://taskmaster-app-pink.vercel.app/)
 
 ---
 

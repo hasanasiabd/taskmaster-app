@@ -2,25 +2,35 @@
 
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
-// রুট বা অন্য ফাইল ইম্পোর্ট করার আগেই dotenv কনফিগার করতে হবে
 dotenv.config();
 
-const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/task');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middlewares - CORS-এ Frontend Vercel URL অনুমতি দেওয়া হলো
+// Allowed Origins Array
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://taskmaster-app-pink.vercel.app',
+  'https://taskmaster-app-git-main-hasanasiabd.vercel.app'
+];
+
+// Middlewares
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://taskmaster-app-pink.vercel.app',
-    'https://taskmaster-app-git-main-hasanasiabd.vercel.app'
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS Not Allowed'), false);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
@@ -29,15 +39,14 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
-// Health Check Route
+// Health Check
 app.get('/', (req, res) => {
   res.send('Task Management API is running...');
 });
 
-// Vercel Serverless এর জন্য Export
+// Export for Vercel Serverless
 module.exports = app;
 
-// Local Development-এর জন্য Listen (Serverless এ Vercel নিজে হ্যান্ডেল করবে)
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

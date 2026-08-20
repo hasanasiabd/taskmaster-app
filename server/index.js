@@ -13,8 +13,16 @@ const taskRoutes = require('./routes/task');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middlewares
-app.use(cors());
+// Middlewares - CORS-এ Frontend Vercel URL অনুমতি দেওয়া হলো
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://taskmaster-app-pink.vercel.app',
+    'https://taskmaster-app-git-main-hasanasiabd.vercel.app'
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Routes
@@ -26,16 +34,12 @@ app.get('/', (req, res) => {
   res.send('Task Management API is running...');
 });
 
-
-
-// Vercel serverless-এর জন্য app এক্সপোর্ট করা জরুরি
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
-
+// Vercel Serverless এর জন্য Export
 module.exports = app;
 
-// Server Listen
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Local Development-এর জন্য Listen (Serverless এ Vercel নিজে হ্যান্ডেল করবে)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}

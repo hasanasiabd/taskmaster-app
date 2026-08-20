@@ -1,20 +1,17 @@
 // server/lib/prisma.js
-
 require('dotenv').config();
+const { Pool, neonConfig } = require('@neondatabase/serverless');
+const { PrismaNeon } = require('@prisma/adapter-neon');
 const { PrismaClient } = require('@prisma/client');
-const { PrismaPg } = require('@prisma/adapter-pg');
-const { Pool } = require('pg');
+const ws = require('ws');
+
+// Serverless WebSocket support for Neon
+neonConfig.webSocketConstructor = ws;
 
 const connectionString = process.env.DATABASE_URL;
 
-const pool = new Pool({
-  connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-const adapter = new PrismaPg(pool);
+const pool = new Pool({ connectionString });
+const adapter = new PrismaNeon(pool);
 
 const globalForPrisma = global;
 const prisma = globalForPrisma.prisma || new PrismaClient({ adapter });
